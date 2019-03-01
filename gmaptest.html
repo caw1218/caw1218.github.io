@@ -1,4 +1,4 @@
-<meta http-equiv="content-language" content="en" />
+<!DOCTYPE html>
 <html>
 	<head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -14,8 +14,6 @@ window.onload=function(){
 var distanceData;
 var durationData;
 document.getElementById('generateDistance').addEventListener('click', function() {
-var origin = document.getElementById('fromLocation').value;
-var destination = document.getElementById('toLocation').value;
 
 var distanceUrl = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=156%20Redcedar%20Dr%20Rochester,NY&destinations=89%20East%20Ave%20Rochester,%20NY&departure_time=now&units=imperial&key=AIzaSyA7tdx4s_lAfguOTF4OFfclyDHS3HYpcKg";
 $.getJSON( {
@@ -38,10 +36,8 @@ document.getElementById('result').innerHTML =  distanceData + " " + durationData
 </script>
 <body>
 <button id="generateDistance">
-search
+run data
 </button>
-<input type="text" id="fromLocation" />
-<input type="text" id="toLocation" />
 <div id="result">
 
 </div>
