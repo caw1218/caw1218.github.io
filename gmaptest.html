@@ -1,0 +1,41 @@
+<script type="text/javascript">
+function updateimages()
+{setInterval(function() 
+{var images = document.images;for (var i=0; i<images.length; i++) 
+{images[i].src = images[i].src.replace(/\btime=[^&]*/, 'time=' + new Date().getTime());}}, 8000)}; // 10000 milliseconds = 10 seconds
+</script>
+<script type="text/javascript">
+window.onload=function(){
+var distanceData;
+var durationData;
+document.getElementById('generateDistance').addEventListener('click', function() {
+var origin = document.getElementById('fromLocation').value;
+var destination = document.getElementById('toLocation').value;
+
+var distanceUrl = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=156%20Redcedar%20Dr%20Rochester,NY&destinations=89%20East%20Ave%20Rochester,%20NY&departure_time=now&units=imperial&key=AIzaSyA7tdx4s_lAfguOTF4OFfclyDHS3HYpcKg";
+$.getJSON( {
+url  : distanceUrl,
+success : function( data, textStatus ) {
+console.log( textStatus, data );
+if(textStatus === "success"){
+	distanceData = data.rows[0].elements[0].distance.text;
+  durationData = data.rows[0].elements[0].duration.text;
+}
+else{
+	distanceData = 'No results found';
+}
+document.getElementById('result').innerHTML =  distanceData + " " + durationData;
+        
+    }
+} );      
+});
+}
+</script>
+<button id="generateDistance">
+search
+</button>
+<input type="text" id="fromLocation" />
+<input type="text" id="toLocation" />
+<div id="result">
+
+</div>
