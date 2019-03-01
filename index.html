@@ -24,6 +24,18 @@ function updateimages()
     </style>
 </head>
 <body onload="updateimages();">
+  
+$url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=156%20Redcedar%20Dr%20Rochester,NY&destinations=89%20East%20Ave%20Rochester,%20NY&departure_time=now&units=imperial&key=AIzaSyA7tdx4s_lAfguOTF4OFfclyDHS3HYpcKg';
+$content = file_get_contents($url);
+$json = json_decode($content, true);
+
+foreach($json['data']['elements'] as $item) {
+    print $item['distance']['text'];
+    print ' - ';
+    print $item['duration_in_traffic']['text'];
+    print '<br>';
+}
+  
 <div>
 <h1>New York State DOT Camera's from Latta Road to 390/590 Interchange</h1>
 <h3>Updated every 8 seconds</h3>
