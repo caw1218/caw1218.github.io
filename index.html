@@ -9,6 +9,32 @@ function updateimages()
 {var images = document.images;for (var i=0; i<images.length; i++) 
 {images[i].src = images[i].src.replace(/\btime=[^&]*/, 'time=' + new Date().getTime());}}, 8000)}; // 10000 milliseconds = 10 seconds
 </script>
+<script>
+var distanceData;
+var durationData;
+document.getElementById('generateDistance').addEventListener('click', function() {
+var origin = document.getElementById('fromLocation').value;
+var destination = document.getElementById('toLocation').value;
+
+//SET YOUR API KEY
+var distanceUrl = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=156%20Redcedar%20Dr%20Rochester,NY&destinations=89%20East%20Ave%20Rochester,%20NY&departure_time=now&units=imperial&key=AIzaSyA7tdx4s_lAfguOTF4OFfclyDHS3HYpcKg";
+$.getJSON( {
+url  : distanceUrl,
+success : function( data, textStatus ) {
+console.log( textStatus, data );
+if(textStatus === "success"){
+	distanceData = data.rows[0].elements[0].distance.text;
+  durationData = data.rows[0].elements[0].duration.text;
+}
+else{
+	distanceData = 'No results found';
+}
+document.getElementById('result').innerHTML =  distanceData + " " +durationData;
+        
+    }
+} );      
+});
+	</script>
   <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -23,39 +49,6 @@ function updateimages()
       }
     </style>
 </head>
-  <?php
-
-$url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=156%20Redcedar%20Dr%20Rochester,NY&destinations=89%20East%20Ave%20Rochester,%20NY&departure_time=now&units=imperial&key=AIzaSyA7tdx4s_lAfguOTF4OFfclyDHS3HYpcKg'; // path to your JSON file
-$data = file_get_contents($url); // put the contents of the file into a variable
-$characters = json_decode($data); // decode the JSON feed
-
-echo $elements[0]->element;
-
-foreach ($elements as $element) {
-	echo $element->name . '<br>';
-}
-
-  <table>
-	<tbody>
-		<tr>
-			<th>Name</th>
-			<th>Race</th>
-		</tr>
-		<?php foreach ($elements as $element) : ?>
-        <tr>
-            <td> <?php echo $element->text; ?> </td>
-            <td> <?php echo $element->value; ?> </td>
-        </tr>
-		<?php endforeach; ?>
-	</tbody>
-</table>
-
-foreach ($elements as $element) {
-	echo $element['origin_addresses'] . '\'s wand is ' . 
-			 $element['distance'][0]['text'] . ', ' . 
-		   $element['distance'][0]['value'] . ', with a ' . 
-		   $element['duration'][0]['text'] . ' core. <br>' ;
-}
 
 <body onload="updateimages();">  
 <div>
