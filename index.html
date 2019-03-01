@@ -17,7 +17,6 @@ document.getElementById('generateDistance').addEventListener('click', function()
 var origin = document.getElementById('fromLocation').value;
 var destination = document.getElementById('toLocation').value;
 
-//SET YOUR API KEY
 var distanceUrl = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=156%20Redcedar%20Dr%20Rochester,NY&destinations=89%20East%20Ave%20Rochester,%20NY&departure_time=now&units=imperial&key=AIzaSyA7tdx4s_lAfguOTF4OFfclyDHS3HYpcKg";
 $.getJSON( {
 url  : distanceUrl,
@@ -30,7 +29,7 @@ if(textStatus === "success"){
 else{
 	distanceData = 'No results found';
 }
-document.getElementById('result').innerHTML =  distanceData + " " +durationData;
+document.getElementById('result').innerHTML =  distanceData + " " + durationData;
         
     }
 } );      
