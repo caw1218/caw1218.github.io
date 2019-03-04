@@ -13,7 +13,29 @@ function updateimages()
 window.onload=function(){
 var distanceData;
 var durationData;
-document.getElementById('generateDistance').addEventListener('click', function createCORSRequest(method, url) {
+document.getElementById('generateDistance').addEventListener('click', function() {
+var distanceUrl = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=156%20Redcedar%20Dr%20Rochester,NY&destinations=89%20East%20Ave%20Rochester,%20NY&departure_time=now&units=imperial&key=AIzaSyA7tdx4s_lAfguOTF4OFfclyDHS3HYpcKg";
+$.getJSON( {
+url  : distanceUrl,
+success : function( data, textStatus ) {
+console.log( textStatus, data );
+if(textStatus === "success"){
+	distanceData = data.rows[0].elements[0].distance.text;
+  durationData = data.rows[0].elements[0].duration.text;
+}
+else{
+	distanceData = 'No results found';
+}
+document.getElementById('result').innerHTML =  distanceData + " " + durationData;
+        
+    }
+} );      
+});
+}
+</script>
+	<script>
+// Create the XHR object.
+function createCORSRequest(method, url) {
   var xhr = new XMLHttpRequest();
   if ("withCredentials" in xhr) {
     // XHR for Chrome/Firefox/Opera/Safari.
@@ -27,7 +49,7 @@ document.getElementById('generateDistance').addEventListener('click', function c
     xhr = null;
   }
   return xhr;
-})
+}
 // Helper method to parse the title tag from the response.
 function getTitle(text) {
   return text.match('<title>(.*)?</title>')[1];
@@ -51,8 +73,8 @@ function makeCorsRequest() {
     alert('Woops, there was an error making the request.');
   };
   xhr.send();
-};	
-</script>
+}	
+</script>	
 <body>
 <button id="generateDistance">
 run data
@@ -62,3 +84,4 @@ run data
 </div>
 </body>
 </html>
+
