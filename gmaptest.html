@@ -1,3 +1,20 @@
+Skip to content
+ 
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ @caw1218 Sign out
+0
+0 0 caw1218/caw1218.github.io
+ Code  Issues 0  Pull requests 0  Projects 0  Wiki  Insights  Settings
+caw1218.github.io/gmaptest.html
+@caw1218 caw1218 Update gmaptest.html
+c688f63  13 minutes ago
+94 lines (84 sloc)  2.49 KB
+    
 <!DOCTYPE html>
 <html>
 	<head>
@@ -13,30 +30,7 @@ function updateimages()
 window.onload=function(){
 var distanceData;
 var durationData;
-document.getElementById('generateDistance').addEventListener('click', makeCorsRequest() {
-
-var distanceUrl = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=156%20Redcedar%20Dr%20Rochester,NY&destinations=89%20East%20Ave%20Rochester,%20NY&departure_time=now&units=imperial&key=AIzaSyA7tdx4s_lAfguOTF4OFfclyDHS3HYpcKg";
-$.getJSON( {
-url  : distanceUrl,
-success : function( data, textStatus ) {
-console.log( textStatus, data );
-if(textStatus === "success"){
-	distanceData = data.rows[0].elements[0].distance.text;
-  durationData = data.rows[0].elements[0].duration.text;
-}
-else{
-	distanceData = 'No results found';
-}
-document.getElementById('result').innerHTML =  distanceData + " " + durationData;
-        
-    }
-} );      
-});
-}
-</script>
-	<script>
-// Create the XHR object.
-function createCORSRequest(method, url) {
+document.getElementById('generateDistance').addEventListener('click', function createCORSRequest(method, url) {
   var xhr = new XMLHttpRequest();
   if ("withCredentials" in xhr) {
     // XHR for Chrome/Firefox/Opera/Safari.
@@ -51,59 +45,52 @@ function createCORSRequest(method, url) {
   }
   return xhr;
 }
-
 // Helper method to parse the title tag from the response.
 function getTitle(text) {
   return text.match('<title>(.*)?</title>')[1];
 }
-
 // Make the actual CORS request.
 function makeCorsRequest() {
   // This is a sample server that supports CORS.
-  var url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=156%20Redcedar%20Dr%20Rochester,NY&destinations=89%20East%20Ave%20Rochester,%20NY&departure_time=now&units=imperial&key=AIzaSyA7tdx4s_lAfguOTF4OFfclyDHS3HYpcKg';
-
+  var url = 'http://html5rocks-cors.s3-website-us-east-1.amazonaws.com/index.html';
   var xhr = createCORSRequest('GET', url);
   if (!xhr) {
     alert('CORS not supported');
     return;
   }
-
   // Response handlers.
   xhr.onload = function() {
     var text = xhr.responseText;
     var title = getTitle(text);
     alert('Response from CORS request to ' + url + ': ' + title);
-	  $.getJSON( {
-url  : distanceUrl,
-success : function( data, textStatus ) {
-console.log( textStatus, data );
-if(textStatus === "success"){
-	distanceData = data.rows[0].elements[0].distance.text;
-  durationData = data.rows[0].elements[0].duration.text;
-}
-else{
-	distanceData = 'No results found';
-}
-document.getElementById('result').innerHTML =  distanceData + " " + durationData;
-        
-    }
-} );
-	  
   };
-
   xhr.onerror = function() {
     alert('Woops, there was an error making the request.');
   };
-
   xhr.send();
-}	
+}	)
+</script>
+	<script>
+
 </script>	
 <body>
 <button id="generateDistance">
-run data test
+run data
 </button>
 <div id="result">
 
 </div>
 </body>
 </html>
+© 2019 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
