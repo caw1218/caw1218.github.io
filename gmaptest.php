@@ -1,9 +1,4 @@
-<form action="google_distance_origin_destination.php">
-  From: <input type="text" name="origin">
-  To: <input type="text" name="destination">
-  <input type="submit" name="submit" value="Get distance">
-</form>
- <?php
+<?php
   if (isset($_GET['submit'])) {
   
     $origin = $_GET['origin'];
