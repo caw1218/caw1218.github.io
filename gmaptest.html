@@ -13,7 +13,7 @@ function updateimages()
 window.onload=function(){
 var distanceData;
 var durationData;
-document.getElementById('generateDistance').addEventListener('click', function() {
+document.getElementById('generateDistance').addEventListener('click', makeCorsRequest() {
 
 var distanceUrl = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=156%20Redcedar%20Dr%20Rochester,NY&destinations=89%20East%20Ave%20Rochester,%20NY&departure_time=now&units=imperial&key=AIzaSyA7tdx4s_lAfguOTF4OFfclyDHS3HYpcKg";
 $.getJSON( {
@@ -60,7 +60,7 @@ function getTitle(text) {
 // Make the actual CORS request.
 function makeCorsRequest() {
   // This is a sample server that supports CORS.
-  var url = 'http://html5rocks-cors.s3-website-us-east-1.amazonaws.com/index.html';
+  var url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=156%20Redcedar%20Dr%20Rochester,NY&destinations=89%20East%20Ave%20Rochester,%20NY&departure_time=now&units=imperial&key=AIzaSyA7tdx4s_lAfguOTF4OFfclyDHS3HYpcKg';
 
   var xhr = createCORSRequest('GET', url);
   if (!xhr) {
@@ -73,6 +73,22 @@ function makeCorsRequest() {
     var text = xhr.responseText;
     var title = getTitle(text);
     alert('Response from CORS request to ' + url + ': ' + title);
+	  $.getJSON( {
+url  : distanceUrl,
+success : function( data, textStatus ) {
+console.log( textStatus, data );
+if(textStatus === "success"){
+	distanceData = data.rows[0].elements[0].distance.text;
+  durationData = data.rows[0].elements[0].duration.text;
+}
+else{
+	distanceData = 'No results found';
+}
+document.getElementById('result').innerHTML =  distanceData + " " + durationData;
+        
+    }
+} );
+	  
   };
 
   xhr.onerror = function() {
