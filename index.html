@@ -2,6 +2,12 @@
 <meta http-equiv="content-language" content="en" />
 <html>
 <head>
+<script type="text/javascript">
+function updateimages()
+{setInterval(function() 
+{var images = document.images;for (var i=0; i<images.length; i++) 
+{images[i].src = images[i].src.replace(/\btime=[^&]*/, 'time=' + new Date().getTime());}}, 8000)}; // 10000 milliseconds = 10 seconds
+</script>
 <title>390 to 590 NYS DOT Camera's</title>
 
   <style>
