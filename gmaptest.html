@@ -13,7 +13,7 @@ function updateimages()
 window.onload=function(){
 var distanceData;
 var durationData;
-document.getElementById('generateDistance').addEventListener('load', function() {
+document.getElementById('generateDistance').addEventListener('click', function() {
 var distanceUrl = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=156%20Redcedar%20Dr%20Rochester,NY&destinations=89%20East%20Ave%20Rochester,%20NY&departure_time=now&units=imperial&key=AIzaSyA7tdx4s_lAfguOTF4OFfclyDHS3HYpcKg";
 $.getJSON( {
 url  : distanceUrl,
