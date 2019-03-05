@@ -112,7 +112,7 @@ function initMap() {
           travelMode: 'DRIVING',
           unitSystem: google.maps.UnitSystem.IMPERIAL,
           avoidHighways: false,
-					drivingOptions:{departureTime: new Date(Date.now()), trafficModel: 'bestguess'},
+	  drivingOptions:{departureTime: new Date(Date.now()), trafficModel: 'bestguess'},
           avoidTolls: false
         }, function(response, status) {
           if (status !== 'OK') {
@@ -123,12 +123,10 @@ function initMap() {
             var outputDiv = document.getElementById('output');
             outputDiv.innerHTML = '';
 
-           
-
             for (var i = 0; i < originList.length; i++) {
               var results = response.rows[i].elements;
               for (var j = 0; j < results.length; j++) {
-                   outputDiv.innerHTML += originList[i] + ' to ' + destinationList[j] +
+                   outputDiv.innerHTML += ' Travel time from Latta Road to 390/590 Interchange '+
                     ': ' + results[j].distance.text + ' in ' + results[j].duration_in_traffic.text + ' in traffic and a total drive of ' +
                     results[j].duration.text +  '<br>';
               }
@@ -136,11 +134,7 @@ function initMap() {
 						
           }
         });
-      }
-
-      
-
-      
+      }    
     </script>
 <!-- Replace the value of the key parameter with your own API key. -->
 <script async defer
