@@ -31,7 +31,7 @@ function updateimages()
 <h1>New York State DOT Camera's from Latta Road to 390/590 Interchange</h1>
 <h3>Updated every 8 seconds</h3>
 </div>
- <div id="output"></div>
+<div id="output"></div>
 <div>
 <table>
 <tr>
@@ -128,7 +128,7 @@ function initMap() {
               for (var j = 0; j < results.length; j++) {
                    outputDiv.innerHTML += ' Travel time from Latta Road to 390/590 Interchange '+
                     ': ' + results[j].distance.text + ' in ' + results[j].duration_in_traffic.text + ' in traffic and a total drive of ' +
-                    results[j].duration.text +  '<br>';
+                    results[j].duration.text +  '<br><br>';
               }
             }
 						
