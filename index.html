@@ -92,19 +92,6 @@ function initMap() {
   trafficLayer.setMap(map);
 }
   
- </script>
-
-    <script>
-      function initMap() {
-        var bounds = new google.maps.LatLngBounds;
-        var origin1 = '2081 Latta Rd, Rochester, NY 14612';
-        var destinationA = 'I-390, Rochester, NY 14623';
-
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 43.161030, lng: -77.610924},
-          zoom: 10
-        });
-
         var service = new google.maps.DistanceMatrixService;
         service.getDistanceMatrix({
           origins: [origin1],
