@@ -31,6 +31,7 @@ function updateimages()
 <h1>New York State DOT Camera's from Latta Road to 390/590 Interchange</h1>
 <h3>Updated every 8 seconds</h3>
 </div>
+ <div id="output"></div>
 <div>
 <table>
 <tr>
@@ -92,6 +93,55 @@ function initMap() {
 }
   
  </script>
+
+    <script>
+      function initMap() {
+        var bounds = new google.maps.LatLngBounds;
+        var origin1 = '2081 Latta Rd, Rochester, NY 14612';
+        var destinationA = 'I-390, Rochester, NY 14623';
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 43.161030, lng: -77.610924},
+          zoom: 10
+        });
+
+        var service = new google.maps.DistanceMatrixService;
+        service.getDistanceMatrix({
+          origins: [origin1],
+          destinations: [destinationA],
+          travelMode: 'DRIVING',
+          unitSystem: google.maps.UnitSystem.IMPERIAL,
+          avoidHighways: false,
+					drivingOptions:{departureTime: new Date(Date.now()), trafficModel: 'bestguess'},
+          avoidTolls: false
+        }, function(response, status) {
+          if (status !== 'OK') {
+            alert('Error was: ' + status);
+          } else {
+            var originList = response.originAddresses;
+            var destinationList = response.destinationAddresses;
+            var outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = '';
+
+           
+
+            for (var i = 0; i < originList.length; i++) {
+              var results = response.rows[i].elements;
+              for (var j = 0; j < results.length; j++) {
+                   outputDiv.innerHTML += originList[i] + ' to ' + destinationList[j] +
+                    ': ' + results[j].distance.text + ' in ' + results[j].duration_in_traffic.text + ' in traffic and a total drive of ' +
+                    results[j].duration.text +  '<br>';
+              }
+            }
+						
+          }
+        });
+      }
+
+      
+
+      
+    </script>
 <!-- Replace the value of the key parameter with your own API key. -->
 <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7tdx4s_lAfguOTF4OFfclyDHS3HYpcKg&callback=initMap">
