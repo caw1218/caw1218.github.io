@@ -92,8 +92,8 @@ function updateimages()
 					trafficLayer.setMap(map);	
         var service = new google.maps.DistanceMatrixService;
         service.getDistanceMatrix({
-          origins: [origin1],[origin2],
-          destinations: [destinationA],[destinationB],
+          origins: [origin1,origin2],
+          destinations: [destinationA,destinationB],
           travelMode: 'DRIVING',
           unitSystem: google.maps.UnitSystem.IMPERIAL,
           avoidHighways: false,
