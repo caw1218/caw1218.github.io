@@ -117,7 +117,7 @@ function updateimages()
 		var testvalues = i;	    
             
 			for (var j = 0; j < results.length; j++) {
-              var testvalues = testvalues+j;
+               testvalues = testvalues+j;
 		      
 		      outputDiv.innerHTML += 'test ' + testvalues + ' Travel time from Latta Road to 390/590 Interchange '+
                     ': ' + results[j].distance.text + ' in ' + results[j].duration_in_traffic.text + ' in traffic and a total drive of ' +
@@ -128,7 +128,7 @@ function updateimages()
 		      
 		    for (var j = 0; j < results.length; j++) {
                   
-			    var testvalues = testvalues+j;
+			    testvalues = testvalues+j;
 			    outputDiv.innerHTML += 'test ' + testvalues + ' Travel time from 390/590 Interchange to Latta Road '+
                     ': ' + results[j].distance.text + ' in ' + results[j].duration_in_traffic.text + ' in traffic and a total drive of ' +
                     results[j].duration.text +  '<br><br>';
