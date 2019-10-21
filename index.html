@@ -116,20 +116,20 @@ function updateimages()
                var results = response.rows[i].elements;
 		    
             
-			for (var j = 0; j < 1; j++) {
+			for (var j = 0; j < results.length; j++) {
               
 		      
-		      outputDiv.innerHTML += j+i+' Travel time from Latta Road to 390/590 Interchange '+
+		      outputDiv.innerHTML += j+' Travel time from Latta Road to 390/590 Interchange '+
                     ': ' + results[j].distance.text + ' in ' + results[j].duration_in_traffic.text + ' in traffic and a total drive of ' +
                     results[j].duration.text +  '<br><br>';
                         }
         
-		    for (var j = 0; j < results.length; j++) {
+		    for (var h = 0; h < results.length; h++) {
                   
 			    
-			    outputDiv.innerHTML += 'test ' + j + i+' Travel time from 390/590 Interchange to Latta Road '+
-                    ': ' + results[j].distance.text + ' in ' + results[j].duration_in_traffic.text + ' in traffic and a total drive of ' +
-                    results[j].duration.text +  '<br><br>';
+			    outputDiv.innerHTML += 'test ' + h +' Travel time from 390/590 Interchange to Latta Road '+
+                    ': ' + results[h].distance.text + ' in ' + results[h].duration_in_traffic.text + ' in traffic and a total drive of ' +
+                    results[h].duration.text +  '<br><br>';
 		    }
             }
 						
