@@ -120,12 +120,12 @@ function updateimages()
               alert (results[j].distance.text);
 				if(results[j].distance.text!=="1 ft" && j==0){outputDiv.innerHTML += ' Travel time from Latta Road to 390/590 Interchange '+
                     ': ' + results[j].distance.text + ' in ' + results[j].duration_in_traffic.text + ' in traffic and a total drive of ' +
-                    results[j].duration.text +  '<br><br>';
-                        }
-			elseif(results[j].distance.text!=="1 ft" && j!=0){outputDiv.innerHTML += ' Travel time from 390/590 Interchange to Latta Road '+
+                    results[j].duration.text +  '<br><br>';}
+                        
+			else if(results[j].distance.text!=="1 ft" && j!=0){outputDiv.innerHTML += ' Travel time from 390/590 Interchange to Latta Road '+
                     ': ' + results[j].distance.text + ' in ' + results[j].duration_in_traffic.text + ' in traffic and a total drive of ' +
-                    results[j].duration.text +  '<br><br>';
-			}}
+                    results[j].duration.text +  '<br><br>';}}
+			
         
 		  
             }
